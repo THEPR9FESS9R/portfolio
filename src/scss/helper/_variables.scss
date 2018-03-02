@@ -1,0 +1,27 @@
+// colors
+$void: #0E0B16;
+$fuschia: #A239CA;
+$jewel: #4717F6;
+$stark: #E7DFDD;
+
+// computing base
+$base-unit: 10px;
+
+// fonts
+$font-family: 'Open Sans', 'Roboto', '-apple-system', sans-serif;
+
+$font-sizes: (
+    'caption' : (mobile: 1.2rem, desktop: 1.2rem),
+    'text' : (mobile: 1.4rem, desktop: 1.4rem),
+    'h3' : (mobile: 1.4rem, desktop: 1.6rem),
+    'h2' : (mobile: 1.8rem, desktop: 2.2rem),
+    'h1' : (mobile: 2.2rem, desktop: 2.8rem),
+);
+$line-height-increment: 0.6rem;
+
+$spacing-m: 0.8rem;
+$spacing-xs: $spacing-m / 4;
+$spacing-s: $spacing-m / 2;
+$spacing-l: 2 * $spacing-m;
+$spacing-xl: 4 * $spacing-m;
+$spacing-xxl: 8 * $spacing-m;

@@ -3,12 +3,16 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].css",
+  disable: process.env.NODE_ENV === "development"
+});
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -29,6 +33,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  plugins: [
+    extractSass
+  ],
   module: {
     rules: [
       {
@@ -64,7 +71,26 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+            use: [{
+                loader: "css-loader",
+                options: {
+                    sourceMap: true,
+                    minimize: true
+                }
+            }, {
+                loader: "sass-loader",
+                options: {
+                    sourceMap: true
+                }
+            }],
+            // use style-loader in development
+            fallback: "style-loader"
+        })
+    }
     ]
   },
   node: {
