@@ -1,0 +1,22 @@
+$void: #0E0B16;
+$fuschia: #A239CA;
+$jewel: #4717F6;
+$stark: #E7DFDD;
+
+.theme {
+    --theme-color: $stark;
+    --theme-bg-color: $void;
+    &.-inverted {
+        --theme-color: $void;
+        --theme-bg-color: $stark;
+    }
+}
+
+.theme {
+    color: var(--theme-color);
+    background-color: var(--theme-bg-color);
+    transition-duration: 300ms;
+    transition-property: background-color, color;
+    transition-timing-function: linear; 
+    padding: 0 $spacing-l;
+}

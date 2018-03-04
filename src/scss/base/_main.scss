@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "Gingham";
+    src: url("../fonts/Gingham/Gingham.woff2") format("woff2-variation");
+    src: url("../fonts/Gingham/Gingham.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: $void;
+    --color: $stark;
+}
+
+html {
+    font-size: $base-unit;
+}
+
+body {
+    color: var(--color);
+    font-family: "Gingham";
+    @include font-size();
+}
+
+a {
+    outline: none;
+    color: var(--color);
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,28 @@
+
+.a-txtLnk { 
+    --txtLnk__color: var(--color);
+    --txtLnk__border-color: $fuschia;
+    --txtLnk__border-height: 2px;
+}
+.a-txtLnk {
+    color: var(--txtLnk__color);
+    outline: none;
+    text-decoration: none;
+    position: relative;
+
+    &::before {
+        background-color: var(--txtLnk__border-color);
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: var(--txtLnk__border-height);
+        transform: scale(0);
+        transition: transform $transition-duration $transition-timing-function;
+    }
+
+    &:hover::before {
+        transform: scale(1);
+    }
+ }

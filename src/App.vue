@@ -1,21 +1,24 @@
 <template>
-  <div id="app">
+  <div id="app" class="pageGrid__body">
     <img src="./assets/logo.png">
     <HelloWorld/>
+    <textLinks>hallo</textLinks>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import textLinks from './components/atoms/links/textLinks/textLinks'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    textLinks
   }
 }
 </script>
-
+<!--
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -26,3 +29,5 @@ export default {
   margin-top: 60px;
 }
 </style>
+-->
+chrome

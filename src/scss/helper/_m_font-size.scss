@@ -1,0 +1,42 @@
+/**
+ * Font-Size Mixin :
+ * A mixin which sets font-size values on mobile & desktop plus their line-height.
+ * The line-height is always the sum of font-size + the given increment set in our vars file
+ *
+ * The media-mix can be found in the file
+ * _m_mediaquery.scss (27.June.2017)
+ *
+ * There are actual five possible properties which creates a valid output :
+ * 'h1', 'h2', 'h3', 'text', 'caption'
+ * The default property is 'text'
+ *
+ * If you want just the font-size with no line-height pass false as second parameter
+ *
+ * Examples:
+ * @include font-size();
+ * @include font-size('h1');
+ * @include font-size('caption');
+ *
+ **/
+
+ @mixin font-size($size : 'text', $line-height: true) {
+    @if map-has-key($font-sizes, $size) {
+        // @include media($screen-s) {
+        //     $font-mobile: map-get-deep($font-sizes, $size, 'mobile');
+        //     font-size: $font-mobile;
+        //     @if $line-height {
+        //         line-height: $font-mobile + $line-height-increment;
+        //     }
+        // }
+
+        // @include media($screen-m) {
+            $font-desktop: map-get-deep($font-sizes, $size, 'desktop');
+            font-size: $font-desktop;
+            @if $line-height {
+                line-height: $font-desktop + $line-height-increment;
+            }
+        // }
+    } @else {
+        @error "Please use a valid font-size. `#{$size}` is not a valid option. "
+    }
+}

@@ -1,0 +1,212 @@
+/**
+ *  Original Source :
+ *  http://hugogiraudel.com/2013/08/12/sass-functions/
+ **/
+
+ @function stripunit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+/**
+ * z-index ranges according to the iab guidelines :
+ * https://www.iab.com/guidelines/z-index-guidelines/
+ *
+ * Examples:
+ * z-index: z('content');               // --> 0
+ * z-index: z('content', 'control');    // --> 5
+ * z-index: z('content', 'tabcontent'); // --> 20
+ * z-index: z('background');            // --> -1
+ * z-index: z('expanding-nav');         // --> 5000000
+ **/
+
+$zindex-ranges: (
+    background : -1, // Backgroud elements
+    content : 0, // Main content and standard ads
+    expanding-ad : 5000, // Expanding advertising
+    floating-ad : 2000000, // Floating advertising
+    popup : 3000000, // Popup elements
+    fixed-ad : 4000000, // Non anchored floating elements
+    expanding-nav : 5000000, // Expanding site navigation elements
+    overlay-ad : 6000000, // Full page overlays
+    overlay-Canvas: 7000000, // OffCanvas overlay
+    debug : 9000000 // ONLY FOR DEBUG PURPOSES!!!! DO NOT USE FOR CONTENT!
+);
+
+// z-index order in specific ranges ( or if you still need to overlap something )
+$zindex-order: (
+    background : null,
+    content : (
+        control,
+        linkarea,
+        swimminglink,
+        tabcontent,
+        badge,
+        dropdown,
+        tooltip
+    ),
+    expanding-ad : null,
+    floating-ad : null,
+    popup : null,
+    fixed-ad : null,
+    expanding-nav : null,
+    overlay-ad : null,
+    overlay-Canvas: (actionbar,
+    autocomplete-suggestions),
+    debug : null
+);
+
+@function z($group, $element: null) {
+    $range: map-get($zindex-ranges, $group);
+    $order: map-get($zindex-order, $group);
+    $z-index: index($order, $element);
+
+    @if not map-has-key($zindex-order, $group) {
+        @error 'There is no group "#{$group}" choose one of: "#{map-keys($zindex-order)}"';
+    }
+
+    @if $element == null {
+        @return $range;
+    } @else {
+        @if $order == null {
+            @error 'There are no items in this list !';
+        }
+        @if $z-index {
+            @return $range + $z-index * 5;
+        } @else {
+            @error 'There is no item "#{$element}" in this list; choose one of: "#{map-get($zindex-order, $group)}"';
+        }
+    }
+}
+
+/**
+ *  Original Source :
+ *  https://github.com/at-import/Sassy-Maps/blob/0.x.x/sass/sassy-maps/_map-get.scss
+ **/
+$private-sassy-maps-suppress-warnings: false !default;
+
+@function map-get-deep-warning($warn, $get, $key) {
+    @if not $private-sassy-maps-suppress-warnings {
+        @if $get == null {
+            @warn "Map has no value for key search `#{$warn}`";
+        } @else if type-of($get) != 'map' {
+            @warn "Non-map value found for key search `#{$warn}`, cannot search for key `#{$key}`";
+        }
+    }
+    @return null;
+}
+
+@function map-get-deep($map, $keys...) {
+    @if length($keys) == 1 {
+        $keys: nth($keys, 1);
+    }
+    $warn: "#{nth($keys, 1)}";
+    $length: length($keys);
+    $get: map-get($map, nth($keys, 1));
+
+    @if $length > 1 {
+        @for $i from 2 through $length {
+            @if $get != null and type-of($get) == 'map' {
+                $warn: $warn + "->#{nth($keys, $i)}";
+                $get: map-get($get, nth($keys, $i));
+
+                @if $get == null {
+                    @return map-get-deep-warning($warn, $get, nth($keys, $i));
+                }
+            } @else {
+                @return map-get-deep-warning($warn, $get, nth($keys, $i));
+            }
+        }
+    }
+
+    @return $get;
+}
+
+/*                                Trigonometry                                */
+/**
+              Opposite
+  sin(a) = -------------
+            hypotenuse
+ */
+@function trigonometry-sin-a($alpha: null, $opposite: null, $hypotenuse: null) {
+    @if $alpha == null {
+        @return rad-to-deg(asin(stripunit($opposite / $hypotenuse)));
+    } @else if $opposite == null {
+        @return sin(deg-to-rad($alpha)) * $hypotenuse;
+    } @else if $hypotenuse == null {
+        @return $opposite / sin(deg-to-rad($alpha));
+    }
+}
+
+/**
+              Adjacent
+  cos(a) = -------------
+            hypotenuse
+ */
+@function trigonometry-cos-a($alpha: null, $adjacent: null, $hypotenuse: null) {
+    @if $alpha == null {
+        @return rad-to-deg(acos(stripunit($adjacent / $hypotenuse)));
+    } @else if $adjacent == null {
+        @return cos(deg-to-rad($alpha)) * $hypotenuse;
+    } @else if $hypotenuse == null {
+        @return $adjacent / cos(deg-to-rad($alpha));
+    }
+}
+
+/**
+            Opposite
+  tan(a) = ----------
+            Adjacent
+ */
+@function trigonometry-tan-a($alpha: null, $opposite: null, $adjacent: null) {
+    @if $alpha == null {
+        @return rad-to-deg(atan(stripunit($opposite / $adjacent)));
+    } @else if $opposite == null {
+        @return tan(deg-to-rad($alpha)) * $adjacent;
+    } @else if $adjacent == null {
+        @return $opposite / tan(deg-to-rad($alpha));
+    }
+}
+
+//Example Code for showcase purpose only
+//
+//$hypotenuse: 0;
+//$alpha: 45deg;
+//$adjacent: 15px;
+//$opposite: $adjacent;
+//$params: (
+//  'alpha': $alpha, 'opposite': $opposite
+//);
+//$hypotenuse: trigonometry-sin-a($params...);
+//@debug 'hypotenuse: #{$hypotenuse}';
+//$params: (
+//  'opposite': $opposite, 'hypotenuse' : $hypotenuse
+//);
+//@debug 'alpha: #{trigonometry-sin-a($params...)}';
+//$params: (
+//  'alpha': $alpha, 'hypotenuse' : $hypotenuse
+//);
+//@debug 'opposite: #{trigonometry-sin-a($params...)}';
+//$params: (
+//  'alpha': $alpha, 'adjacent': $adjacent
+//);
+//@debug 'hypotenuse: #{trigonometry-cos-a($params...)}';
+//$params: (
+//  'adjacent': $adjacent, 'hypotenuse' : $hypotenuse
+//);
+//@debug 'alpha: #{trigonometry-cos-a($params...)}';
+//$params: (
+//  'alpha': $alpha, 'hypotenuse' : $hypotenuse
+//);
+//@debug 'adjacent: #{trigonometry-cos-a($params...)}';
+//$params: (
+//  'alpha': $alpha, 'adjacent': $adjacent
+//);
+//@debug 'opposite: #{trigonometry-tan-a($params...)}';
+//$params: (
+//  'adjacent': $adjacent, 'opposite' : $opposite
+//);
+//@debug 'alpha: #{trigonometry-tan-a($params...)}';
+//$params: (
+//  'alpha': $alpha, 'opposite' : $opposite
+//);
+//@debug 'adjacent: #{trigonometry-tan-a($params...)}';
