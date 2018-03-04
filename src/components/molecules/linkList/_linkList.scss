@@ -1,0 +1,14 @@
+$linkList-spacing: $spacing-m;
+.m-linkList {
+
+    padding-left: $linkList-spacing;
+    margin-bottom: $standard-down-spacing;
+
+    &__item {
+
+    }
+
+    &__item + &__item {
+        margin-top: $linkList-spacing;
+    }
+}
