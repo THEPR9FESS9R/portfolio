@@ -1,117 +1,97 @@
 <template>
 
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        ---
-        <TextLink
-          v-for="link in links"
-          v-bind:link="link"
-          v-bind:key="link.id"
-        >
-        </TextLink>
-        ---
-      </li>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-
+    <H1
+      v-bind:headline="welcomeMsg"
+    ></H1>  
+    <H2 
+      v-bind:headline="essentialsHeadline"
+    ></H2>
+    <LinkList
+      v-bind:links="essentialLinks"
+    />
+    <H2 
+      v-bind:headline="ecosystemHeadline"
+    ></H2>
+    <LinkList
+      v-bind:links="ecosystemLinks"
+    />
   </div>
 </template>
 
 <script>
-import TextLink from './atoms/links/textLinks/textLinks'
+import H1 from './atoms/typography/headlines/h1'
+import H2 from './atoms/typography/headlines/h2'
+import LinkList from './molecules/linkList/linkList'
 
 export default {
   name: 'HelloWorld',
   components: {
-    TextLink
+    LinkList,
+    H1,
+    H2
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      links: [
+      welcomeMsg: {
+        txt: 'Welcome to Your Vue.js App',
+        class: 'helloWorld__headline'
+      },
+      essentialsHeadline: {
+        txt: 'Essential Links',
+        class: 'helloWorld__headline'
+      },
+      ecosystemHeadline: {
+        txt: 'Ecosystem',
+        class: 'helloWorld__headline'
+      },
+      essentialLinks: [
         {
-          id: 0,
           href: 'https://vuejs.org',
           target: '_blank',
           txt: 'Core Docs'
+        },
+        {
+          href: 'https://forum.vuejs.org',
+          target: '_blank',
+          txt: 'Forum'
+        },
+        {
+          href: 'https://chat.vuejs.org',
+          target: '_blank',
+          txt: 'Chat'
+        },
+        {
+          href: 'https://twitter.com/vuejs',
+          target: '_blank',
+          txt: 'Twitter'
+        },
+        {
+          href: 'http://vuejs-templates.github.io/webpack/',
+          target: '_blank',
+          txt: 'Docs for This Template'
+        }
+      ],
+      ecosystemLinks: [
+        {
+          href: 'http://router.vuejs.org/',
+          target: '_blank',
+          txt: 'vue-router'
+        },
+        {
+          href: 'http://vuex.vuejs.org/',
+          target: '_blank',
+          txt: 'vuex'
+        },
+        {
+          href: 'http://vue-loader.vuejs.org/',
+          target: '_blank',
+          txt: 'vue-loader'
+        },
+        {
+          href: 'https://github.com/vuejs/awesome-vue',
+          target: '_blank',
+          txt: 'awesome-vue'
         }
       ]
     }

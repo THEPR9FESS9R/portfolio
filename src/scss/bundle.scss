@@ -8,9 +8,12 @@
 @import 'base/headings';
 @import 'module/theme';
 
-//atoms
+// atoms
 @import '../components/atoms/all';
 
-//organisms
+// molecules
+@import '../components/molecules/all';
+
+// organisms
 @import '../components/organisms/all';
 

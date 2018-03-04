@@ -1,16 +1,16 @@
 
 .theme {
-    --theme-color: $stark;
-    --theme-bg-color: $void;
+    --color: $stark;
+    --bg-color: $void;
     &.-inverted {
-        --theme-color: $void;
-        --theme-bg-color: $stark;
+        --color: $void;
+        --bg-color: $stark;
     }
 }
 
 .theme {
-    color: var(--theme-color);
-    background-color: var(--theme-bg-color);
+    color: var(--color);
+    background-color: var(--bg-color);
     transition-duration: $transition-duration;
     transition-property: background-color, color;
     transition-timing-function: $transition-timing-function; 
