@@ -1,0 +1,12 @@
+.a-floatingButton {
+    border-radius: 50%;
+    width: $standard-clicking-area;
+    height: $standard-clicking-area;
+    background-color: var(--color);
+    color: var(--bg-color);
+
+    position: fixed;
+    right: $standard-down-spacing;
+    bottom: $standard-down-spacing;
+    z-index: 200;
+}
