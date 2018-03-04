@@ -1,20 +1,22 @@
 <template>
-  <div id="app" class="pageGrid__body">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
-    <textLinks>hallo</textLinks>
+  <div id="app">
+    <Header/>
+    <Content/>
+    <Footer/>    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import textLinks from './components/atoms/links/textLinks/textLinks'
+import Header from './components/organisms/header/header'
+import Content from './components/organisms/mainContent/mainContent'
+import Footer from './components/organisms/footer/footer'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    textLinks
+    Header,
+    Content,
+    Footer
   }
 }
 </script>

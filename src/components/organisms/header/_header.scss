@@ -1,0 +1,8 @@
+.o-header {
+    min-height: 10rem;
+    background-color: var(--color);
+    position: relative;
+    z-index: 3;
+
+    @extend %down-shadow;
+}

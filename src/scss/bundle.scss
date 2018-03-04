@@ -5,8 +5,12 @@
 @import 'helper/m_font-size';
 @import 'base/reset';
 @import 'base/main';
-@import 'base/pageGrid';
 @import 'base/headings';
-@import '../components/atoms/links/textLinks/_textLinks';
-
 @import 'module/theme';
+
+//atoms
+@import '../components/atoms/all';
+
+//organisms
+@import '../components/organisms/all';
+

@@ -5,6 +5,16 @@
     <h2>Essential Links</h2>
     <ul>
       <li>
+        ---
+        <TextLink
+          v-for="link in links"
+          v-bind:link="link"
+          v-bind:key="link.id"
+        >
+        </TextLink>
+        ---
+      </li>
+      <li>
         <a
           href="https://vuejs.org"
           target="_blank"
@@ -81,15 +91,29 @@
         </a>
       </li>
     </ul>
+
   </div>
 </template>
 
 <script>
+import TextLink from './atoms/links/textLinks/textLinks'
+
 export default {
   name: 'HelloWorld',
+  components: {
+    TextLink
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      links: [
+        {
+          id: 0,
+          href: 'https://vuejs.org',
+          target: '_blank',
+          txt: 'Core Docs'
+        }
+      ]
     }
   }
 }
