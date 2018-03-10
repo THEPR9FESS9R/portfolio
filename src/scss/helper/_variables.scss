@@ -3,10 +3,11 @@ $void: #0E0B16;
 $fuschia: #A239CA;
 $jewel: #4717F6;
 $stark: #E7DFDD;
-// $void: #A9B7C0;
-// $fuschia: #C7D8C6;
-// $jewel: #EFD9C1;
-// $stark: #CCCBC6;
+
+$bg-color: $void;
+$color: $stark;
+$emphasis-1: $fuschia;
+$emphasis-2: $jewel;
 
 // computing base
 $base-unit: 10px;

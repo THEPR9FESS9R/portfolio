@@ -1,10 +1,10 @@
 
 .theme {
-    --color: $stark;
-    --bg-color: $void;
     &.-inverted {
-        --color: $void;
-        --bg-color: $stark;
+        --color: $bg-color;
+        --bg-color: $color;
+        --emphasis-1: $emphasis-2;
+        --emphasis-2: $emphasis-1;
     }
 }
 

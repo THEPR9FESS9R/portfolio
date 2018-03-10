@@ -7,8 +7,10 @@
 }
 
 :root {
-    --bg-color: $void;
-    --color: $stark;
+    --color: $color;
+    --bg-color: $bg-color;
+    --emphasis-1: $emphasis-1;
+    --emphasis-2: $emphasis-2;
 }
 
 html {
