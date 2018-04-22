@@ -3,7 +3,7 @@
     <FloatingButton/>
     <Header/>
     <Content/>
-    <Footer/>    
+    <Footer/>
   </div>
 </template>
 

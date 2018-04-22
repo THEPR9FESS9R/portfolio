@@ -2,6 +2,8 @@
   <main class="pageGrid__body o-mainContent">
       <div class="o-mainContent__content">
         <img src="../../../assets/logo.png">
+        <!-- <img src="../../../assets/cologne_skyline.jpeg"> -->
+        <Banner/>
         <HelloWorld/>
       </div>
     </main>
@@ -9,10 +11,12 @@
 
 <script>
 import HelloWorld from '../../HelloWorld'
+import Banner from '../../atoms/banner/banner'
 export default {
     name: 'Content',
     components: {
-        HelloWorld
+        HelloWorld,
+        Banner
     }
 }
 </script>
