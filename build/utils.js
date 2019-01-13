@@ -59,7 +59,13 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    scss: generateLoaders('sass', {
+        data: `
+          @import "src/scss/helper/functions";
+          @import "src/scss/helper/variables";
+          @import "src/scss/helper/m_font-size";
+        `
+    }),
   }
 }
 

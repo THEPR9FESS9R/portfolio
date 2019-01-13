@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <FloatingButton/>
+    <!-- <FloatingButton/>
     <Header/>
     <Content/>
-    <Footer/>
+    <Footer/> -->
+    <Galaxy />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Header from './components/organisms/header/header'
 import Content from './components/organisms/mainContent/mainContent'
 import Footer from './components/organisms/footer/footer'
 import FloatingButton from './components/atoms/buttons/floatingButton/floatingButton';
+import Galaxy from './components/atoms/galaxy/galaxy'
 
 export default {
   name: 'App',
@@ -19,7 +21,8 @@ export default {
     Header,
     Content,
     Footer,
-    FloatingButton
+    FloatingButton,
+    Galaxy
   }
 }
 </script>

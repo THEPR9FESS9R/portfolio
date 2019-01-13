@@ -1,5 +1,5 @@
 <template>
-  <h1 class='a-headline -h1' v-bind:class="headline.class">{{ headline.txt }}</h1>
+  <h1 class='a-headline -h1' :class="headline.class">{{ headline.txt }}</h1>
 </template>
 
 <script>
