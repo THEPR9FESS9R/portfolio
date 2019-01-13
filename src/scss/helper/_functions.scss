@@ -210,3 +210,43 @@ $private-sassy-maps-suppress-warnings: false !default;
 //  'alpha': $alpha, 'opposite' : $opposite
 //);
 //@debug 'adjacent: #{trigonometry-tan-a($params...)}';
+
+$x: 0 !global;
+$y: 0 !global;
+@function createSnailLine($viewBoxX: 500, $viewBoxY: 500, $gutter: 4, $isReverse: false) {
+    $x: $viewBoxX / 2 / 1px;
+    $y: $viewBoxY / 2 / 1px;
+    $currentRadius: 0;
+    $currentDiameter: 0;
+    $path: "M#{$x} #{$y}";
+        
+    $iterations: floor($viewBoxY / $gutter / 2) / 1px;
+        
+    @debug $iterations;
+    @for $i from 1 through $iterations {
+
+        $currentDiameter: $currentDiameter + $gutter;
+        $currentRadius: $currentDiameter / 2;
+
+        $x-axis-rotation: 0;
+        @if ($isReverse) {
+        $x: $x + $currentDiameter;
+        $x-axis-rotation: 1;
+        } @else {
+        $x: $x - $currentDiameter;      
+        }
+        $path: "#{$path} A #{$currentRadius} #{$currentRadius} #{$x-axis-rotation} 0 0 #{$x} #{$y}";
+        
+        $currentDiameter: $currentDiameter + $gutter;
+        $currentRadius: $currentDiameter / 2;
+            
+        @if ($isReverse) {
+        $x: $x - $currentDiameter;    
+        } @else {
+        $x: $x + $currentDiameter;      
+        }
+        $path: "#{$path} A #{$currentRadius} #{$currentRadius} #{$x-axis-rotation} 0 0 #{$x} #{$y}";
+    }
+    
+    @return $path;
+}

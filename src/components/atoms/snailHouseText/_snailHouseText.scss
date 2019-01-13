@@ -1,0 +1,13 @@
+$snailHouseText-height: 500px;
+.snailHouseText {
+
+    height: $snailHouseText-height;
+    width: $snailHouseText-height;
+    
+
+    $blockModifier: &;
+
+    &__text {
+        fill: var(--color);
+    }
+}

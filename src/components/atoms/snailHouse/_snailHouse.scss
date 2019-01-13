@@ -1,0 +1,61 @@
+$svg-scale: 1;
+$svg-height: 500px;
+$svg-height--scaled: $svg-height * $svg-scale;
+$gutter: 4;
+  
+.snailHouse {
+    height: $svg-height--scaled;
+    width: $svg-height--scaled;
+
+    $blockSelector: &;
+
+    &__path {
+        --stroke-offset: 100;
+        --stroke-dasharray: 10000;
+        
+        --stroke-offset-end: 0;
+        --stroke-dasharray-end: 0;
+
+        animation-timing-function: linear;
+        animation-duration: 120s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        fill: transparent;
+        stroke: var(--color);
+
+        $params: (
+            'viewBoxX': $svg-height,
+            'viewBoxY': $svg-height,
+            'gutter': $gutter,
+            'isReverse': false
+        );
+        d: path("#{createSnailLine($params...)}");
+    }
+
+    &.-fillAnimation {
+        #{$blockSelector}__path {
+            animation-name: dash;
+            stroke-dasharray: var(--stroke-offset);
+            stroke-dashoffset: var(--stroke-dasharray);
+        }
+    }
+
+    &.-reversed {
+        #{$blockSelector}__path {
+            $params2: (
+                'viewBoxX': $svg-height,
+                'viewBoxY': $svg-height,
+                'gutter': $gutter,
+                'isReverse': true
+            );
+            d: path("#{createSnailLine($params2...)}");
+        }
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: var(--stroke-offset-end);
+        // stroke-dasharray: var(--stroke-dasharray-end);
+    }
+}

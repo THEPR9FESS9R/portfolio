@@ -1,5 +1,6 @@
 <template>
-  <button class="a-floatingButton" v-on:click="invert">invert</button>
+  <button class="a-floatingButton" v-on:click="invert">invert
+  </button>
 </template>
 
 <script>
