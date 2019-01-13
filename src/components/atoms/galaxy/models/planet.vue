@@ -1,17 +1,38 @@
 <template>
-    <div :ref="'planet'" class="planet" :style="{ width: d + 'px', height: d + 'px', backgroundColor: fill}"></div>
+    <g>
+        <path :id="id" :d="path" :stroke="fill" :fill="'transparent'" />
+        <g>
+            <circle :r="'10'" :fill="fill" :style="{ motionPath: path }">
+            </circle>
+            <text class="planet__name" :style="{ fill: fill }" text-anchor="middle" y="20px">
+                {{name}}
+            </text>
+            <animateMotion :dur="duration + 's'" repeatCount="indefinite">
+                <mpath :xlink:href="'#' + id"></mpath>
+            </animateMotion>
+        </g>
+    </g>
+    <!-- <div :ref="'planet'" class="planet" :style="{ width: d + 'px', height: d + 'px', backgroundColor: fill}"></div> -->
     <!-- <div :ref="'planet'" class="planet" :style="{ backgroundColor: fill }"></div> -->
 </template>
 
 <script>
+import { createArcPath, createMoveToPath } from './../../../../js/utlis/pathUtils'
 export default {
     name: 'Planet',
+    data () {
+        return {
+            id: null
+        }
+    },
     props: {
-        x: Number,
-        path: String,
-        d: Number,
+        cx: Number,
+        cy: Number,
+        // path: String,
+        r: Number,
+        duration: Number,
         fill: String,
-        deltaSun: Number
+        name: String,
     },
     computed: {
         style () {
@@ -19,30 +40,32 @@ export default {
         },
         viewBox () {
             return `0 0 ${this.viewBoxX} ${this.viewBoxY}`;
+        },
+        path () {
+            var path = createMoveToPath('', this.cx, this.cy);
+            // var path = '';
+
+            path = createArcPath(path, this.r, 0, this.cx - 2 * this.r, this.cy);
+            path = createArcPath(path, this.r, 0, this.cx, this.cy);
+            path = `${path} Z`;
+            return path;
         }
     },
     mounted () {
+        this.id = this._uid;
         if (!this.deltaSun) {
             return false;
         }
-        this.$refs.planet.style.setProperty('--planet-left', `${this.deltaSun}px`);
+        this.$refs.planet.style.setProperty('--planet-path', `${this.deltaSun}px`);
     }
 }
 </script>
 
 <style lang="scss">
-$planet-size: 20px;
 .planet {
-    --planet-left: 0px;
-    border-radius: 50%;
-    position: absolute;
-
-    height: $planet-size;
-    width: $planet-size;
-
-    top: 50%;
-    left: calc(50% - var(--planet-left));
-    transform: translateY(-50%) translateX(-50%);
+    &__name::first-letter {
+        text-transform: uppercase;
+    }
 }
 </style>
 
