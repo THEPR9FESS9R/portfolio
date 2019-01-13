@@ -3,6 +3,7 @@
       <div class="o-mainContent__content">
         <!-- <img src="../../../assets/logo.png"> -->
         <!-- <img src="../../../assets/cologne_skyline.jpeg"> -->
+        <FibanacciSpiral/>
         <Banner/>
         <SnailHouseText/>
         <SnailHouse/>
@@ -16,9 +17,12 @@ import HelloWorld from '../../HelloWorld'
 import Banner from '../../atoms/banner/banner'
 import SnailHouseText from '../../atoms/snailHouseText/snailHouseText'
 import SnailHouse from '../../atoms/snailHouse/snailHouse'
+import FibanacciSpiral from '../../atoms/fibonacciSpiral/fibonacciSpiral'
+
 export default {
     name: 'Content',
     components: {
+        FibanacciSpiral,
         HelloWorld,
         SnailHouse,
         SnailHouseText,
