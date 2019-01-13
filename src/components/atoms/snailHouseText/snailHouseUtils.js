@@ -23,7 +23,6 @@ export default function createPath (viewboxX = 500, viewboxY = 500, gutter = 2, 
         path = buildPathString(path, currentRadius, xAxisRotation, x, y);
     }
 
-    console.log('path:', path);
     return path;
 }
 
