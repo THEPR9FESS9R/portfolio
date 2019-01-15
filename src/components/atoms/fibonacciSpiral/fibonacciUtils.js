@@ -143,14 +143,8 @@ export function createPath () {
         path = rectangle.render(path);
     });
 
-    let deltaY = 250 - completeRectangle.tl.y;
-    let deltaX = 250 - completeRectangle.tl.x;
-
-    console.log('deltaX:', deltaX);
-    console.log('deltaY:', deltaY);
-
-    console.log(completeRectangle.getHorizontalSideLength());
-    console.log(completeRectangle.getVerticalSideLength());
+    // let deltaY = 250 - completeRectangle.tl.y;
+    // let deltaX = 250 - completeRectangle.tl.x;
 
     return path;
 }

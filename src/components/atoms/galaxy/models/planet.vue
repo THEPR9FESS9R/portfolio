@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { createArcPath, createMoveToPath } from './../../../../js/utlis/pathUtils'
+import { createArcPath, createMoveToPath } from './../../../../js/utils/pathUtils'
 export default {
     name: 'Planet',
     data () {
