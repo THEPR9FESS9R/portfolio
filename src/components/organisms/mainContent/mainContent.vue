@@ -3,12 +3,12 @@
       <div class="o-mainContent__content">
         <!-- <img src="../../../assets/logo.png"> -->
         <!-- <img src="../../../assets/cologne_skyline.jpeg"> -->
-        <Mandelbrot/>
+        <!-- <Mandelbrot/> -->
         <Galaxy/>
-        <FibanacciSpiral/>
-        <Banner/>
-        <SnailHouseText/>
-        <SnailHouse/>
+        <!-- <FibanacciSpiral/> -->
+        <!-- <Banner/> -->
+        <!-- <SnailHouseText/> -->
+        <!-- <SnailHouse/> -->
         <!-- <HelloWorld/> -->
       </div>
     </main>
